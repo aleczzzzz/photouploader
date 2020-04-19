@@ -54,7 +54,7 @@ class PhotoController extends Controller
 
     public function edit(Photo $photo)
     {
-        if (auth()->id() != $photo->id) {
+        if (auth()->id() != $photo->user_id) {
             abort(403);
         }
         
@@ -63,7 +63,7 @@ class PhotoController extends Controller
 
     public function update(Request $request, Photo $photo)
     {
-        if (auth()->id() != $photo->id) {
+        if (auth()->id() != $photo->user_id) {
             abort(403);
         }
 
@@ -97,7 +97,7 @@ class PhotoController extends Controller
 
     public function delete(Photo $photo)
     {
-        if (auth()->id() != $photo->id) {
+        if (auth()->id() != $photo->user_id) {
             abort(403);
         }
 
