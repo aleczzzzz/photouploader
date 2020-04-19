@@ -1,0 +1,33 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.object-fit-none {
+    object-fit: none;
+    background: #999;
+}
+
+.line-height-1 {
+    line-height: 1;
+}
+
+.photo-card-img {
+    height: 350px;
+    max-height: 350px;
+    object-fit: cover;
+}
+
+button.no-design {
+    border: none;
+    background: none;
+}
+
+button.no-design:active, button.no-design:focus{
+    border: none;
+    outline: none;
+}
