@@ -18,7 +18,7 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('caption')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id', 'photo_user_id')->references('id')->on('users');
