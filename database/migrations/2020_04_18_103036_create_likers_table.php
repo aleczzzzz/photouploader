@@ -19,8 +19,8 @@ class CreateLikersTable extends Migration
             $table->unsignedInteger('photo_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('photo_id')->references('id')->on('photos');
+            $table->foreign('user_id', 'liker_user_id')->references('id')->on('users');
+            $table->foreign('photo_id', 'liker_photo_id')->references('id')->on('photos');
         });
     }
 

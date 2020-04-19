@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('photo_id')->references('id')->on('photos');
+            $table->foreign('user_id', 'comment_user_id')->references('id')->on('users');
+            $table->foreign('photo_id', 'comment_photo_id')->references('id')->on('photos');
         });
     }
 
