@@ -14,6 +14,7 @@ class CreateLikersTable extends Migration
     public function up()
     {
         Schema::create('likers', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('photo_id');
             $table->timestamps();
