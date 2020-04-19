@@ -24,12 +24,15 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        //get photos
         $groups = Photo::withCount('likers', 'comments');
 
+        //check sort
         if ($request->sort) {
             $groups = $groups->orderBy('created_at', $request->sort);
         }
 
+        //group photos by created_at date
         $groups = $groups->get()->groupBy(function($photo) {
             return \Carbon\Carbon::parse($photo->created_at)->format('Y-m-d');
         });

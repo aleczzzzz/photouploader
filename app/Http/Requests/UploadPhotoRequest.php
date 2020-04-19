@@ -24,6 +24,7 @@ class UploadPhotoRequest extends FormRequest
     public function rules()
     {
         return [
+            //image is required, must be a file, not greater than 2048kb, and must be a jpg,jpeg or png file type
             'image' => 'required|file|max:2048|mimes:jpg,jpeg,png',
             'caption' => 'string'
         ];

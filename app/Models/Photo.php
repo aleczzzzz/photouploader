@@ -16,9 +16,10 @@ class Photo extends Model
         'updated_at'
     ];
 
+    //get photo path
     public function getPathAttribute()
     {
-        return asset(Storage::url('photos/' . $this->user_id . '/' . $this->name));
+        return Storage::url('photos/' . $this->user_id . '/' . $this->name);
     }
 
     public function user()
