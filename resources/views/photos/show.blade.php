@@ -20,14 +20,16 @@
                 @auth
                 <div class="col-6 text-right">
                     <button class="btn btn-sm btn-primary" id="btn-comment">Comment</button>
-                    <a href="{{route('photos.edit', $photo->id)}}" class="btn btn-sm btn-success">Edit</a>
-                    <button class="btn btn-sm btn-danger" onclick="event.preventDefault();
-                                    confirm('Are you sure?') ? document.getElementById('delete-photo-form').submit() : null;">Delete</button>
+                    @if (auth()->id() == $photo->user_id)
+                        <a href="{{route('photos.edit', $photo->id)}}" class="btn btn-sm btn-success">Edit</a>
+                        <button class="btn btn-sm btn-danger" onclick="event.preventDefault();
+                                        confirm('Are you sure?') ? document.getElementById('delete-photo-form').submit() : null;">Delete</button>
 
-                    <form id="delete-photo-form" action="{{ route('photos.delete', $photo->id) }}" method="POST" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                        <form id="delete-photo-form" action="{{ route('photos.delete', $photo->id) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endif
                 </div>
                 @endauth
             </div>

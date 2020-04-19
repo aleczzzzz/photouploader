@@ -19,7 +19,7 @@ class PhotoController extends Controller
 
     public function store(UploadPhotoRequest $request)
     {   
-        $path = $request->file('image')->store('photos/' . auth()->id(), ['disk' => 'public']);
+        $path = $request->file('image')->store('photos/' . auth()->id());
 
         auth()->user()->photos()->create([
             'name' => basename($path),
@@ -54,11 +54,19 @@ class PhotoController extends Controller
 
     public function edit(Photo $photo)
     {
+        if (auth()->id() != $photo->id) {
+            abort(403);
+        }
+        
         return view('photos.edit', compact('photo'));
     }
 
     public function update(Request $request, Photo $photo)
     {
+        if (auth()->id() != $photo->id) {
+            abort(403);
+        }
+
         $photo->update($request->all());
 
         Session::flash('success', 'Successfully Updated Caption');
@@ -89,6 +97,10 @@ class PhotoController extends Controller
 
     public function delete(Photo $photo)
     {
+        if (auth()->id() != $photo->id) {
+            abort(403);
+        }
+
         $photo->likers()->detach();
         $photo->comments()->delete();
         $photo->delete();
